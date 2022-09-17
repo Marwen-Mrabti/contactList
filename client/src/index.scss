@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000300;
+}
+
+@layer components {
+  .btn {
+    @apply mx-auto my-6 py-2 px-8 bg-slate-400 text-black rounded-md text-lg font-semibold capitalize ease-in-out duration-500;
+    &__add {
+      @apply w-full bg-blue-500 text-white;
+      &:hover {
+        @apply bg-blue-400;
+      }
+    }
+    &__edit {
+      @apply bg-yellow-500 text-white;
+      &:hover {
+        @apply bg-yellow-400;
+      }
+    }
+
+    &__delete {
+      @apply bg-orange-700 text-white;
+      &:hover {
+        @apply bg-orange-600;
+      }
+    }
+  }
+}
