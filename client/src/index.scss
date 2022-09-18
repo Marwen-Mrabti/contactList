@@ -8,7 +8,7 @@ body {
 
 @layer components {
   .btn {
-    @apply mx-auto my-6 py-2 px-8 bg-slate-400 text-black rounded-md text-lg font-semibold capitalize ease-in-out duration-500;
+    @apply mx-auto my-4 py-1 px-6 bg-slate-400 text-black rounded-md text-lg font-semibold capitalize ease-in-out duration-500;
     &__add {
       @apply w-full bg-blue-500 text-white;
       &:hover {
@@ -26,6 +26,20 @@ body {
       @apply bg-orange-700 text-white;
       &:hover {
         @apply bg-orange-600;
+      }
+    }
+
+    &__modal {
+      @apply bg-blue-400 text-white;
+      &:hover {
+        @apply bg-blue-500;
+      }
+    }
+
+    &__show {
+      @apply bg-violet-500 text-white;
+      &:hover {
+        @apply bg-violet-600;
       }
     }
   }

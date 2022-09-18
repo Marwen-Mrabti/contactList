@@ -4,8 +4,13 @@ import express from 'express';
  * ----------------------------------------------
  * ----------------------------------------------
  * @method GET
- * @route /api/posts/all/user_id
+ * @route /api/posts/all/:user_id
  * @description fetch all posts
+ * ----------------------------------------------
+ * ----------------------------------------------
+ * @method GET
+ * @route /api/posts/:user_id/:post_id
+ * @description fetch post by its id
  * ----------------------------------------------
  * ----------------------------------------------
  * @method POST
@@ -28,6 +33,7 @@ const PostRouter = express.Router();
 import {
   CreateNewPost,
   DeleteUserPost,
+  FetchUserPostById,
   FetchUserPosts,
   UpdateUserPost,
 } from '../controllers/post.controllers.js';
@@ -37,6 +43,12 @@ import {
  * @description : fetch all posts created by a user
  */
 PostRouter.get('/all/:user_id', FetchUserPosts);
+
+/**
+ * @route /api/posts/:user_id/:post_id
+ * @description : fetch a post by its id
+ */
+PostRouter.get('/:user_id/:post_id', FetchUserPostById);
 
 /**
  * @route /api/posts/all/:user_id

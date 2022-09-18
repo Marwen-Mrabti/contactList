@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useRecoilValue } from 'recoil';
 import { deleteUserById } from '../apiQueries/userQueries';
 import { isAuthState } from '../recoilAtoms/userAtoms';
+import Posts from './Posts';
 
 const UserCard = ({ user }) => {
   //access the query client
@@ -15,7 +16,6 @@ const UserCard = ({ user }) => {
 
   //react query hook used in case of data mutation (delete, update, create)
   const { mutate: mutationDeleteUser } = useMutation(deleteUserById, {
-    //after mutating the data : invalidate it and refetch it
     onSuccess: () => {
       toast.success('user deleted successfully', {
         position: 'top-right',
@@ -28,7 +28,6 @@ const UserCard = ({ user }) => {
       });
       queryClient.invalidateQueries('users');
     },
-
     onError: () => {
       toast.error("couldn't delete user! try again ", {
         position: 'top-right',
@@ -50,7 +49,8 @@ const UserCard = ({ user }) => {
   };
 
   /**
-   * When the delete button is clicked, delete the user.
+   *@description When the delete button is clicked, delete the user.
+   *@param user_id
    */
   const handleOnDelete = () => {
     const confirmDelete = prompt(
@@ -62,20 +62,24 @@ const UserCard = ({ user }) => {
     }
   };
 
+
   return (
-    <div className="bg-gray-300 shadow-lg my-4 px-8 py-2 rounded-md flex flex-row items-center gap-4 ">
-      <h3 className="text-lg">{user?.name} </h3>
-      <h3 className="text-lg">{user?.email} </h3>
-      {isAuth && (
-        <>
-          <button className="btn btn__edit" onClick={handleOnEdit}>
-            edit
-          </button>
-          <button className="btn btn__delete" onClick={handleOnDelete}>
-            delete
-          </button>
-        </>
-      )}
+    <div className="w-[80vw] bg-gray-300 shadow-lg my-4 px-8 py-2 rounded-md flex flex-col gap-3">
+      <div className=" flex flex-row items-center gap-2 ">
+        <h3 className="text-lg">{user?.name} </h3>
+        <h3 className="text-lg">{user?.email} </h3>
+        {isAuth && (
+          <>
+            <button className="btn btn__edit" onClick={handleOnEdit}>
+              edit
+            </button>
+            <button className="btn btn__delete" onClick={handleOnDelete}>
+              delete
+            </button>
+          </>
+        )}
+      </div>
+      <Posts user_id={user._id} />
     </div>
   );
 };

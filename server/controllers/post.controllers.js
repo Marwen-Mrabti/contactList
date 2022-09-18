@@ -2,11 +2,11 @@ import { User } from '../models/user.model.js';
 import { Post } from '../models/post.model.js';
 
 /********************* GET REQUESTS ************************ */
-// FETCH ALL USERS
+// FETCH USER POSTS
 /**
- * @description : fetch all users from the contactList database
+ * @description : fetch a user's posts from the contactList database
  * @method  GET
- * @route /api/users/all
+ * @route /api/posts/all/:user_id
  * @param  {any} req
  * @param  {any} res
  * @returns  an array of posts [{...post1}, {...post2},...]
@@ -21,6 +21,24 @@ export const FetchUserPosts = async (req, res) => {
   }
 };
 
+// FETCH  POST BY ID
+/**
+ * @description : fetch a user's post by its id from the contactList database
+ * @method  GET
+ * @route /api/posts/:user_id/:post_id
+ * @param  {any} req
+ * @param  {any} res
+ * @returns  post
+ */
+export const FetchUserPostById = async (req, res) => {
+  const { user_id, post_id } = req.params;
+  try {
+    const post = await Post.findOne({ user: user_id, _id: post_id });
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 /********************* POST REQUESTS ************************ */
 //CREATE NEW USER
 /**
@@ -29,7 +47,7 @@ export const FetchUserPosts = async (req, res) => {
  * @route /api/posts/new/:user_id
  * @param  {any} req
  * @param  {any} res
- * @returns  create new post and add it the related user's posts array
+ * @returns  message
  */
 export const CreateNewPost = async (req, res) => {
   const { user_id } = req.params;
@@ -46,6 +64,7 @@ export const CreateNewPost = async (req, res) => {
       { $push: { posts: newPost._id } },
       { runValidators: true }
     );
+
     await newPost.save();
     res.status(201).json({ message: 'post added successfully' });
   } catch (error) {
@@ -57,7 +76,7 @@ export const CreateNewPost = async (req, res) => {
 //UPDATE USER
 /**
  *@description if a user exists and post exist update it in the database and in the user's posts array
- * @method  PUT
+ * @method  PATCH
  * @route /api/posts/update/:user_id/:post_id
  * @param  {any} req
  * @param  {any} res

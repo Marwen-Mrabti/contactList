@@ -1,15 +1,15 @@
 import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Route, Routes } from 'react-router-dom';
-import { AddUser, Navbar, UsersList } from './components';
+import { AddUser, Navbar, UsersList, PostForm } from './components';
 import PrivateRoute from './components/shared/PrivateRoute';
-
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
+        {/* users routes */}
         <Route index element={<UsersList />} />
         <Route
           path="/users/add-user"
@@ -19,12 +19,29 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/users/edit-user/:user_id"
           element={
             <PrivateRoute>
               <AddUser />
+            </PrivateRoute>
+          }
+        />
+
+        {/* posts routes */}
+        <Route
+          path="/posts/new/:user_id"
+          element={
+            <PrivateRoute>
+              <PostForm />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/posts/edit/:user_id/:post_id"
+          element={
+            <PrivateRoute>
+              <PostForm />
             </PrivateRoute>
           }
         />

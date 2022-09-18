@@ -1,3 +1,4 @@
+import { Post } from '../models/post.model.js';
 import { User } from '../models/user.model.js';
 
 /********************* GET REQUESTS ************************ */
@@ -110,6 +111,7 @@ export const DeleteUser = async (req, res) => {
   const { user_id } = req.params;
   try {
     await User.findByIdAndRemove(user_id);
+    await Post.deleteMany({ user: user_id });
     res.status(201).json({ message: 'user deleted successfully' });
   } catch (error) {
     res.status(409).json({ message: error.message });
