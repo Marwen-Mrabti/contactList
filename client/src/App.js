@@ -1,8 +1,15 @@
 import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Route, Routes } from 'react-router-dom';
-import { AddUser, Navbar, UsersList, PostForm } from './components';
-import PrivateRoute from './components/shared/PrivateRoute';
+import {
+  AddUser,
+  Navbar,
+  UsersList,
+  PostForm,
+  RegisterForm,
+  LoginForm,
+} from './components';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
@@ -11,14 +18,9 @@ function App() {
       <Routes>
         {/* users routes */}
         <Route index element={<UsersList />} />
-        <Route
-          path="/users/add-user"
-          element={
-            <PrivateRoute>
-              <AddUser />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/users/sign-up" element={<RegisterForm />} />
+        <Route path="/users/sign-in" element={<LoginForm />} />
+
         <Route
           path="/users/edit-user/:user_id"
           element={

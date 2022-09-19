@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import UserCard from './UserCard';
-import { fetchUsersList } from '../apiQueries/userQueries';
+import { fetchUsersList } from '../../apiQueries/userQueries';
 
 const UsersList = () => {
   const queryClient = useQueryClient();

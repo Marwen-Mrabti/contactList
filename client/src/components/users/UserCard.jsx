@@ -3,9 +3,9 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useRecoilValue } from 'recoil';
-import { deleteUserById } from '../apiQueries/userQueries';
-import { isAuthState } from '../recoilAtoms/userAtoms';
-import Posts from './Posts';
+import { deleteUserById } from '../../apiQueries/userQueries';
+import { isAuthState } from '../../recoilAtoms/userAtoms';
+import Posts from '../posts/Posts';
 
 const UserCard = ({ user }) => {
   //access the query client

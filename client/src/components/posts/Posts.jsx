@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserPosts } from '../apiQueries/postQueries';
+import { fetchUserPosts } from '../../apiQueries/postQueries';
 import PostCard from './PostCard';
 
 const Posts = ({ user_id }) => {

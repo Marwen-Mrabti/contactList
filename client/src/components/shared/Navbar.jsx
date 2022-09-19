@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isAuthState } from '../recoilAtoms/userAtoms';
+import { isAuthState } from '../../recoilAtoms/userAtoms';
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useRecoilState(isAuthState);
@@ -27,14 +27,16 @@ const Navbar = () => {
     setIsAuth(false);
   };
 
-
   return (
     <div className="text-white flex justify-center items-center gap-x-16 h-16 w-full my-4 px-16 bg-slate-500">
       <Link to="/" className="text-2xl uppercase">
         users
       </Link>
-      <Link to="/users/add-user" className="text-2xl uppercase">
-        add user
+      <Link to="/users/sign-up" className="text-2xl uppercase">
+        Sign-up
+      </Link>
+      <Link to="/users/sign-in" className="text-2xl uppercase">
+        Sign-in
       </Link>
       {!isAuth ? (
         <button className="btn text-blue-700" onClick={handleOnLogin}>

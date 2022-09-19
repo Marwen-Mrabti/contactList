@@ -1,8 +1,8 @@
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { isAuthState } from '../recoilAtoms/userAtoms';
+import { isAuthState } from '../../recoilAtoms/userAtoms';
 import { useRecoilValue } from 'recoil';
-import { deleteUserPost } from '../apiQueries/postQueries';
+import { deleteUserPost } from '../../apiQueries/postQueries';
 import { useNavigate } from 'react-router-dom';
 
 const PostCard = ({ post, user_id, postsQuery }) => {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createNewUser, EditUser, fetchUserById } from '../apiQueries/userQueries';
-import Form from './shared/Form';
+import { createNewUser, EditUser, fetchUserById } from '../../apiQueries/userQueries';
+import Form from '../shared/Form';
 
 const USER_DEFAULT = { name: '', email: '', phone: '' };
 
