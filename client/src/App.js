@@ -2,7 +2,6 @@ import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Route, Routes } from 'react-router-dom';
 import {
-  AddUser,
   Navbar,
   UsersList,
   PostForm,
@@ -21,15 +20,7 @@ function App() {
         <Route path="/users/sign-up" element={<RegisterForm />} />
         <Route path="/users/sign-in" element={<LoginForm />} />
 
-        <Route
-          path="/users/edit-user/:user_id"
-          element={
-            <PrivateRoute>
-              <AddUser />
-            </PrivateRoute>
-          }
-        />
-
+       
         {/* posts routes */}
         <Route
           path="/posts/new/:user_id"
