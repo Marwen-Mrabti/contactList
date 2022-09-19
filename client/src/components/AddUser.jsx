@@ -13,23 +13,18 @@ const AddUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(USER_DEFAULT);
 
-  const { data } = useQuery(['users', { user_id }], () => fetchUserById(user_id), {
+  const userQuery = useQuery(['users', { user_id }], () => fetchUserById(user_id), {
     retry: 2,
     enabled: !!user_id,
+    onSuccess: (data) => setUser(data),
   });
 
-  //mock authentication
-  useEffect(() => {
-    data?.data && setUser(data.data);
-  }, [data]);
-
-  //add user
-  const { mutate: mutationAddUser } = useMutation(createNewUser, {
-    //navigate to home page
+  /************* mutations :: create post ************* */
+  const { mutate: mutationAddUser } = useMutation(() => createNewUser(user), {
     onSuccess: () => {
       queryClient.invalidateQueries('users');
-      navigate('/');
       setUser(USER_DEFAULT);
+      navigate('/');
     },
     onError: (error) => {
       toast.error(error.message, {
@@ -44,30 +39,25 @@ const AddUser = () => {
     },
   });
 
-  //edit user
+  /************* mutations :: update post ************* */
   const { mutate: mutationUpdateUser } = useMutation(() => EditUser(user_id, user), {
     //navigate to home page if the edit operation was successful
     onSuccess: () => {
       queryClient.invalidateQueries('users');
-      navigate('/');
       setUser(USER_DEFAULT);
+      navigate('/');
     },
-
     onSettled: () => queryClient.invalidateQueries('users'),
   });
 
-  //-------- form submit handler
-  /**
-   * If user_id does not exist, add a new user to the db, otherwise, mutate the user that has that id.
-   */
+  /************* handlers :: form submitting handler ************* */
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
     !user_id
       ? //if user_id does not  exist ====> add new user to the db
-        mutationAddUser({ id: Date.now(), ...user })
+        mutationAddUser()
       : //if user_id exists (user_id !== undefined) ====> mutate the user  that has that id
-        mutationUpdateUser({ ...user });
+        mutationUpdateUser();
   };
 
   return (

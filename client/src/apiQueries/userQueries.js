@@ -3,46 +3,79 @@ import axios from 'axios';
 const usersApiBaseUrl = 'http://localhost:8080/api/users';
 
 /**
- * fetch all users
- * @ usersApiBaseUrl/all
+ * @description fetch all users
+ * @route /api/users/all
+ * @returns an array of users [{...user1}, {...user},...]
  */
 export const fetchUsersList = async () => {
-  const { data } = await axios.get(`${usersApiBaseUrl}/all`);
-  return data;
+  try {
+    const response = await axios.get(`${usersApiBaseUrl}/all`);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 /**
- * fetch user by id
- * @ usersApiBaseUrl/user_id
+ * @description fetch a user by its id
+ * @route /api/users/:user_id
+ * @param user_id
+ * @returns an object {...user}
  */
 export const fetchUserById = async (user_id) => {
-  const response = await axios.get(`${usersApiBaseUrl}/${user_id}`);
-  return response;
+  try {
+    const response = await axios.get(`${usersApiBaseUrl}/${user_id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 /**
- * create new user
- * @ usersApiBaseUrl/new
+ * @description create a new user
+ * @route /api/users/new
+ * @param newUser {...newUser}
+ * @returns an object {...user}
  */
 export const createNewUser = async (newUser) => {
-  const response = await axios.post(`${usersApiBaseUrl}/new`, newUser);
-  return response;
+  try {
+    const response = await axios.post(`${usersApiBaseUrl}/new`, newUser);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 /**
- * update an existing user
- * @ usersApiBaseUrl/update/:user_id
+ * @description update a user
+ * @route /api/users/update/:user_id
+ * @param user_id
+ * @param updatedUser {...updatedUser}
+ * @returns an object {...user}
  */
 export const EditUser = async (user_id, updatedUser) => {
-  const response = await axios.patch(`${usersApiBaseUrl}/update/${user_id}`, updatedUser);
-  return response;
+  try {
+    const response = await axios.patch(
+      `${usersApiBaseUrl}/update/${user_id}`,
+      updatedUser
+    );
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 /**
- * delete user
- * @ usersApiBaseUrl/delete/:user_id
+ *@description if a user exists delete it from the database
+ * @route /api/users/delete/:user_id
+ * @param user_id
+ * @returns  a message (string)
  */
 export const deleteUserById = async (userId) => {
-  const response = await axios.delete(`${usersApiBaseUrl}/delete/${userId}`);
-  return response;
+  try {
+    const response = await axios.delete(`${usersApiBaseUrl}/delete/${userId}`);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
 };

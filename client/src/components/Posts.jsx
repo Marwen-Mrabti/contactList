@@ -22,14 +22,14 @@ const Posts = ({ user_id }) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-start items-center ">
+      <div className="w-full flex flex-row justify-end  items-center ">
         <button
-          className="btn btn__modal"
+          className="btn btn__add max-w-fit mx-2"
           onClick={() => navigate(`/posts/new/${user_id}`)}
         >
           add post
         </button>
-        <button className="btn btn__show" onClick={handleOnShowPosts}>
+        <button className="btn btn__show mx-2" onClick={handleOnShowPosts}>
           show posts
         </button>
       </div>

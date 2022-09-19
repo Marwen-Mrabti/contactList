@@ -65,7 +65,11 @@ const UserCard = ({ user }) => {
 
   return (
     <div className="w-[80vw] bg-gray-300 shadow-lg my-4 px-8 py-2 rounded-md flex flex-col gap-3">
-      <div className=" flex flex-row items-center gap-2 ">
+      <div
+        className={` px-2 my-2 grid ${
+          isAuth ? 'grid-cols-4' : 'grid-cols-2'
+        } justify-between items-center gap-2`}
+      >
         <h3 className="text-lg">{user?.name} </h3>
         <h3 className="text-lg">{user?.email} </h3>
         {isAuth && (

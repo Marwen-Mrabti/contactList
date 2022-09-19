@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import {
   createUserPost,
   fetchUserPostById,
@@ -14,7 +14,9 @@ const PostForm = () => {
   const navigate = useNavigate();
   const [userPost, setUserPost] = useRecoilState(userPostState);
 
-  /********************* fetch post by id*********************/
+  /****
+   * @description fetch post by id and populate userPost with the response's data
+   ********/
   const postQuery = useQuery(
     ['posts', user_id, post_id],
     () => fetchUserPostById(user_id, post_id),
@@ -34,6 +36,7 @@ const PostForm = () => {
       },
     }
   );
+
   /************* mutations :: update post ************* */
   const { mutate: mutationUpdatePost } = useMutation(
     () => updateUserPost(user_id, post_id, userPost),

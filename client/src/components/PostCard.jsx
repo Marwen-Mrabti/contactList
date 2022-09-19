@@ -9,10 +9,7 @@ const PostCard = ({ post, user_id, postsQuery }) => {
   const queryClient = useQueryClient();
   const isAuth = useRecoilValue(isAuthState);
   const navigate = useNavigate();
-  /************* edit post  ************* */
-  const handleOnPostEdit = () => {
-    navigate(`/posts/edit/${user_id}/${post._id}`);
-  };
+
   /************* mutations :: delete ************* */
   const { mutate: mutationDeletePost } = useMutation(
     () => deleteUserPost(user_id, post._id),
@@ -25,6 +22,12 @@ const PostCard = ({ post, user_id, postsQuery }) => {
     }
   );
 
+  /************* handlers :: edit post handler  ************* */
+  const handleOnPostEdit = () => {
+    navigate(`/posts/edit/${user_id}/${post._id}`);
+  };
+
+  /************* handlers :: delete post handler  ************* */
   const handleOnDeletePost = () => {
     const confirmDelete = prompt(
       'this action can not be undone!!! type delete if you are sure?',

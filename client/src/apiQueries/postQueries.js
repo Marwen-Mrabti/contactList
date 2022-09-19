@@ -19,10 +19,11 @@ export const fetchUserPosts = async (user_id) => {
 };
 
 /**
- * @description fetch all posts created by specific user
- * @route /api/posts/all/:user_id
+ * @description fetch a post by its id
+ * @route /api/posts/:user_id/:post_id
  * @param user_id
- * @returns an array of posts [{...post1}, {...post2},...]
+ * @param post_id
+ * @returns an object {...post}
  */
 export const fetchUserPostById = async (user_id, post_id) => {
   try {
@@ -34,10 +35,11 @@ export const fetchUserPostById = async (user_id, post_id) => {
 };
 
 /**
- * @description fetch all posts created by specific user
+ * @description create new post
  * @route /api/posts/new/:user_id
  * @param user_id
- * @returns message
+ * @param userPost {...object}
+ * @returns message "string"
  */
 export const createUserPost = async (user_id, userPost) => {
   try {
