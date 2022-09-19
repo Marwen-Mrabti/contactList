@@ -11,6 +11,16 @@ const UserSchema = new Schema({
     lowercase: true,
     validate: [validator.isEmail, 'please provide a valid email'],
   },
+  password: {
+    type: String,
+    required: [true, 'please provide a password'],
+    minlength: 8,
+  },
+  password: {
+    type: String,
+    required: [true, 'please retype your password'],
+  },
+  
   phone: { type: Number, required: true, unique: true },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 });
