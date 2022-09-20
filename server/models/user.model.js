@@ -16,13 +16,14 @@ const UserSchema = new Schema({
     required: [true, 'please provide a password'],
     minlength: 8,
   },
-  password: {
+  passwordConfirm: {
     type: String,
     required: [true, 'please retype your password'],
   },
-  
   phone: { type: Number, required: true, unique: true },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+  avatarUrl: { type: String },
+  userDocsUrls: [{ type: String }],
 });
 
 export const User = mongoose.model('users', UserSchema);

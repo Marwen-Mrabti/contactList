@@ -7,6 +7,7 @@ import {
   PostForm,
   RegisterForm,
   LoginForm,
+  AddUser,
 } from './components';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -19,8 +20,8 @@ function App() {
         <Route index element={<UsersList />} />
         <Route path="/users/sign-up" element={<RegisterForm />} />
         <Route path="/users/sign-in" element={<LoginForm />} />
+        <Route path="/users/add-user" element={<AddUser />} />
 
-       
         {/* posts routes */}
         <Route
           path="/posts/new/:user_id"

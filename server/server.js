@@ -1,7 +1,6 @@
 console.clear();
 /**********************************/
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -9,8 +8,7 @@ import cors from 'cors';
 import { ConnectDB } from './config/db.config.js';
 
 //import routes
-import UserRouter from './routes/user.routes.js';
-import PostRouter from './routes/post.routes.js';
+import { AuthRouter, UserRouter, PostRouter } from './routes/routes.index.js';
 
 // create an express instance
 const app = express();
@@ -37,6 +35,7 @@ app.get('/', (req, res) => {
 });
 
 //use UserRouter @ /api/users
+app.use('/api/auth', AuthRouter);
 app.use('/api/users', UserRouter);
 app.use('/api/posts', PostRouter);
 
