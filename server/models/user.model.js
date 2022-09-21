@@ -26,4 +26,7 @@ const UserSchema = new Schema({
   userDocsUrls: [{ type: String }],
 });
 
+
+
+
 export const User = mongoose.model('users', UserSchema);
